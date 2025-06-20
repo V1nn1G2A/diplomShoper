@@ -1,3 +1,4 @@
+// client/src/api/productsApi.ts
 import { api } from './axios';
 
 export const productApi = {
@@ -5,19 +6,19 @@ export const productApi = {
   getById: (id: number) => api.get(`/products/${id}`),
 
   create: (data: {
-    title: string;
+    name: string;
     description: string;
     price: number;
-    characteristics: string;
+    characteristics: Record<string, string>;
   }) => api.post('/products', data),
 
   update: (
     id: number,
     data: {
-      title: string;
+      name: string;
       description: string;
       price: number;
-      characteristics: string;
+      characteristics: Record<string, string>;
     }
   ) => api.put(`/products/${id}`, data),
 

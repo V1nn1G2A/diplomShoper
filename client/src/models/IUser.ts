@@ -4,5 +4,6 @@ export interface IUser {
   middle_name?: string;
   email: string;
   phone: string;
+  role: string;
   city: string;
 }

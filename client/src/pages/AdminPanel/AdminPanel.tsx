@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -25,18 +25,19 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
+  useToast,
 } from "@chakra-ui/react";
 import type { IUser } from "../../models/IUser";
 import type { IProduct } from "../../models/IProduct";
 import users from "../../data/userData.json";
-import initialProducts from "../../data/productData.json";
+import axios from "axios";
 
 export const AdminPanel: React.FC = () => {
   const [tabIndex, setTabIndex] = useState(0);
-
-  const [products, setProducts] = useState<IProduct[]>(initialProducts);
+  const [products, setProducts] = useState<IProduct[]>([]);
   const [editingProduct, setEditingProduct] = useState<IProduct | null>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
 
   const [formState, setFormState] = useState({
     name: "",
@@ -48,6 +49,19 @@ export const AdminPanel: React.FC = () => {
     setFormState({ name: "", price: "", description: "" });
     setEditingProduct(null);
   };
+
+  const fetchProducts = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/products");
+      setProducts(res.data);
+    } catch (error) {
+      toast({ title: "Ошибка загрузки продуктов", status: "error" });
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   const handleOpenModal = (product?: IProduct) => {
     if (product) {
@@ -63,7 +77,7 @@ export const AdminPanel: React.FC = () => {
     onOpen();
   };
 
-  const handleSaveProduct = () => {
+  const handleSaveProduct = async () => {
     const newProduct: IProduct = {
       id: editingProduct ? editingProduct.id : Date.now(),
       name: formState.name,
@@ -72,18 +86,30 @@ export const AdminPanel: React.FC = () => {
       characteristics: {},
     };
 
-    setProducts((prev) =>
-      editingProduct
-        ? prev.map((p) => (p.id === editingProduct.id ? newProduct : p))
-        : [...prev, newProduct]
-    );
-
-    onClose();
-    resetForm();
+    try {
+      if (editingProduct) {
+        await axios.put(`http://localhost:5000/api/products/${editingProduct.id}`, newProduct);
+        toast({ title: "Товар обновлён", status: "success" });
+      } else {
+        await axios.post("http://localhost:5000/api/products", newProduct);
+        toast({ title: "Товар добавлен", status: "success" });
+      }
+      fetchProducts();
+      onClose();
+      resetForm();
+    } catch (error) {
+      toast({ title: "Ошибка при сохранении", status: "error" });
+    }
   };
 
-  const handleDeleteProduct = (id: number) => {
-    setProducts((prev) => prev.filter((p) => p.id !== id));
+  const handleDeleteProduct = async (id: number) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/products/${id}`);
+      toast({ title: "Товар удалён", status: "success" });
+      fetchProducts();
+    } catch (error) {
+      toast({ title: "Ошибка при удалении", status: "error" });
+    }
   };
 
   return (
@@ -99,11 +125,8 @@ export const AdminPanel: React.FC = () => {
         </TabList>
 
         <TabPanels>
-          {/* USERS */}
           <TabPanel>
-            <Heading size="md" mb={4}>
-              Все пользователи
-            </Heading>
+            <Heading size="md" mb={4}>Все пользователи</Heading>
             <Table variant="simple">
               <Thead>
                 <Tr>
@@ -124,7 +147,6 @@ export const AdminPanel: React.FC = () => {
             </Table>
           </TabPanel>
 
-          {/* PRODUCTS */}
           <TabPanel>
             <Flex justify="space-between" mb={4}>
               <Heading size="md">Все товары</Heading>
@@ -152,18 +174,10 @@ export const AdminPanel: React.FC = () => {
                     </Td>
                     <Td>
                       <Flex gap={2}>
-                        <Button
-                          size="sm"
-                          colorScheme="blue"
-                          onClick={() => handleOpenModal(product)}
-                        >
+                        <Button size="sm" colorScheme="blue" onClick={() => handleOpenModal(product)}>
                           Изменить
                         </Button>
-                        <Button
-                          size="sm"
-                          colorScheme="red"
-                          onClick={() => handleDeleteProduct(product.id)}
-                        >
+                        <Button size="sm" colorScheme="red" onClick={() => handleDeleteProduct(product.id)}>
                           Удалить
                         </Button>
                       </Flex>
@@ -176,37 +190,28 @@ export const AdminPanel: React.FC = () => {
         </TabPanels>
       </Tabs>
 
-      {/* MODAL */}
       <Modal isOpen={isOpen} onClose={() => { onClose(); resetForm(); }}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>
-            {editingProduct ? "Редактировать товар" : "Добавить товар"}
-          </ModalHeader>
+          <ModalHeader>{editingProduct ? "Редактировать товар" : "Добавить товар"}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <VStack spacing={4}>
               <Input
                 placeholder="Название"
                 value={formState.name}
-                onChange={(e) =>
-                  setFormState({ ...formState, name: e.target.value })
-                }
+                onChange={(e) => setFormState({ ...formState, name: e.target.value })}
               />
               <Input
                 placeholder="Цена"
                 type="number"
                 value={formState.price}
-                onChange={(e) =>
-                  setFormState({ ...formState, price: e.target.value })
-                }
+                onChange={(e) => setFormState({ ...formState, price: e.target.value })}
               />
               <Input
                 placeholder="Описание"
                 value={formState.description}
-                onChange={(e) =>
-                  setFormState({ ...formState, description: e.target.value })
-                }
+                onChange={(e) => setFormState({ ...formState, description: e.target.value })}
               />
             </VStack>
           </ModalBody>
