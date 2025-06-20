@@ -1,0 +1,26 @@
+[
+  {
+    "first_name": "Анна",
+    "last_name": "Смирнова",
+    "middle_name": "Александровна",
+    "email": "anna.smirnova@example.com",
+    "phone": "89005554433",
+    "city": "Москва"
+  },
+  {
+    "first_name": "Дмитрий",
+    "last_name": "Кузнецов",
+    "middle_name": "Игоревич",
+    "email": "d.kuznetsov@example.com",
+    "phone": "89006667788",
+    "city": "Санкт-Петербург"
+  },
+  {
+    "first_name": "Екатерина",
+    "last_name": "Волкова",
+    "middle_name": null,
+    "email": "ekaterina.volkova@example.com",
+    "phone": "89009998877",
+    "city": "Новосибирск"
+  }
+]

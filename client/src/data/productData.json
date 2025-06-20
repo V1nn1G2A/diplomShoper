@@ -1,0 +1,106 @@
+[
+  {
+    "id": 3,
+    "name": "Мышь Logitech G Pro",
+    "description": "Профессиональная игровая мышь с сенсором HERO",
+    "price": 4990.0,
+    "characteristics": {
+      "Тип": "Игровая",
+      "Разрешение": "16000 DPI",
+      "Вес": "80 г",
+      "Подключение": "Проводное"
+    },
+    "image": "https://www.logitechg.com/en-us/products/gaming-mice/pro-x-superlight.910-006794.html"
+  },
+  {
+    "id": 4,
+    "name": "Клавиатура Redragon K552",
+    "description": "Механическая клавиатура с красной подсветкой",
+    "price": 3790.0,
+    "characteristics": {
+      "Тип": "Механическая",
+      "Подсветка": "Красная",
+      "Раскладка": "ANSI",
+      "Подключение": "USB"
+    },
+    "image": "https://www.redragonzone.com/products/redragon-k552-kumara-led-backlit-mechanical-gaming-keyboard/"
+  },
+  {
+    "id": 5,
+    "name": "SSD Kingston NV2 1TB",
+    "description": "Быстрый NVMe SSD для игр и работы",
+    "price": 6890.0,
+    "characteristics": {
+      "Тип": "NVMe",
+      "Объём": "1ТБ",
+      "Интерфейс": "PCIe 4.0",
+      "Форм-фактор": "M.2"
+    },
+    "image": "https://www.kingston.com/en/ssd/nv2-nvme-ssd"
+  },
+  {
+    "id": 6,
+    "name": "Процессор AMD Ryzen 5 5600X",
+    "description": "6 ядер, 12 потоков, высокая производительность",
+    "price": 18990.0,
+    "characteristics": {
+      "Ядра": "6",
+      "Потоки": "12",
+      "Частота": "3.7 ГГц",
+      "Сокет": "AM4"
+    },
+    "image": "https://www.amd.com/en/products/cpu/amd-ryzen-5-5600x"
+  },
+  {
+    "id": 7,
+    "name": "Оперативная память Corsair Vengeance 16GB",
+    "description": "Набор из 2 модулей по 8ГБ DDR4 3200МГц",
+    "price": 5990.0,
+    "characteristics": {
+      "Тип": "DDR4",
+      "Объём": "16ГБ (2x8)",
+      "Частота": "3200МГц",
+      "Форм-фактор": "DIMM"
+    },
+    "image": "https://www.corsair.com/us/en/Categories/Products/Memory/Vengeance-LPX/p/CMK16GX4M2E3200C16"
+  },
+  {
+    "id": 8,
+    "name": "Материнская плата ASUS TUF B550M",
+    "description": "Материнская плата micro-ATX для Ryzen",
+    "price": 10290.0,
+    "characteristics": {
+      "Чипсет": "B550",
+      "Форм-фактор": "micro-ATX",
+      "Сокет": "AM4",
+      "Память": "до 128ГБ DDR4"
+    },
+    "image": "https://www.asus.com/ru/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b550m-plus/"
+  },
+  {
+    "id": 9,
+    "name": "Видеокарта NVIDIA RTX 3060",
+    "description": "Популярная видеокарта для Full HD и QHD гейминга",
+    "price": 37990.0,
+    "characteristics": {
+      "Память": "12ГБ GDDR6",
+      "Интерфейс": "PCIe 4.0",
+      "Разрешение": "до 7680x4320",
+      "Тип охлаждения": "2 вентилятора"
+    },
+    "image": "https://www.nvidia.com/en-eu/geforce/graphics-cards/30-series/rtx-3060-3060ti/"
+  },
+  {
+    "id": 10,
+    "name": "Блок питания Deepcool PF650",
+    "description": "650 Вт, сертификат 80+ Bronze, тихий вентилятор",
+    "price": 4590.0,
+    "characteristics": {
+      "Мощность": "650 Вт",
+      "Сертификат": "80+ Bronze",
+      "Охлаждение": "120мм вентилятор",
+      "Кабели": "не модульные"
+    },
+    "image": "https://www.deepcool.com/product/power/2023-04/5_1060.shtml"
+  }
+]
