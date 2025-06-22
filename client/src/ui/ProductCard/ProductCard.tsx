@@ -23,6 +23,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       display="flex"
       flexDirection={{ base: "column" }}
       justifyContent="space-between"
+      minH="400px"
     >
       <Box>
         <Link to={`/product/${id}`}>
@@ -31,30 +32,30 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </Text>
         </Link>
 
-        <Box>
+        <Box mb={3}>
           <Image
             src={
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDItVRptC5139xw0LhV44p-bIkn5OCW9VEpg&s"
             }
             alt={name}
             width="100%"
-            height="auto"
-            overflow="hidden"
-            aspectRatio="1/1"
+            height="120px"
+            objectFit="cover"
+            borderRadius="md"
           />
         </Box>
 
-        <Text fontSize="sm" color="brand.secondary" mb={3}>
+        <Text fontSize="sm" color="brand.secondary" mb={3} noOfLines={2}>
           {description}
         </Text>
 
-        <Text fontWeight="semibold" fontSize="md" color="brand.accent" mb={3}>
+        <Text fontWeight="semibold" fontSize="lg" color="brand.accent" mb={3}>
           {price.toLocaleString("ru-RU")} ₽
         </Text>
 
-        <Box fontSize="sm" color="brand.secondary" mb={4}>
-          {Object.entries(characteristics).map(([key, value]) => (
-            <Text key={key}>
+        <Box fontSize="xs" color="brand.secondary" mb={4}>
+          {Object.entries(characteristics || {}).slice(0, 3).map(([key, value]) => (
+            <Text key={key} noOfLines={1}>
               {key}: {value}
             </Text>
           ))}

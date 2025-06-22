@@ -1,25 +1,35 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import ProductsPage from "./pages/ProductsPage/ProductsPage";
-import ProductPage from "./pages/ProductPage/ProductPage";
-import { Header } from "./components/Header/Header";
-import AccountPage from "./pages/AccountPage/AccountPage";
-import { AdminPanel } from "./pages/AdminPanel/AdminPanel";
-import { CartPage } from "./pages/CartPage/CartPage";
+// client/src/App.tsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react';
+import { Provider } from 'react-redux';
+import { store } from './store/index';
+import { UserProvider } from './context/UserContext';
+import { Header } from './components/Header/Header';
+import ProductsPage from './pages/ProductsPage/ProductsPage';
+import ProductPage from './pages/ProductPage/ProductPage';
+import { CartPage } from './pages/CartPage/CartPage';
+import { AdminPanel } from './pages/AdminPanel/AdminPanel';
+import AccountPage from './pages/AccountPage/AccountPage';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Navigate to="/products" />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/account" element={<AccountPage />} />
-        <Route path="/admin" element={<AdminPanel />} />
-        <Route path="/cart" element={<CartPage />} />
-        {/* Add more routes as needed */}
-      </Routes>
-    </BrowserRouter>
+    <ChakraProvider >
+      <Provider store={store}>
+        <UserProvider>
+          <Router>
+            <Header />
+            <Routes>
+              <Route path="/" element={<ProductsPage />} />
+              <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/admin" element={<AdminPanel />} />
+              <Route path="/account" element={<AccountPage />} />
+            </Routes>
+          </Router>
+        </UserProvider>
+      </Provider>
+    </ChakraProvider>
   );
 }
 

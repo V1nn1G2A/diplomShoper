@@ -20,28 +20,28 @@ exports.getProductById = async (req, res) => {
 };
 
 exports.createProduct = async (req, res) => {
-  const { title, description, price, characteristics } = req.body;
+  const { name, description, price, characteristics } = req.body;
   try {
     const result = await pool.query(
-      'INSERT INTO products (title, description, price, characteristics) VALUES ($1, $2, $3, $4) RETURNING *',
-      [title, description, price, characteristics]
+      'INSERT INTO products (name, description, price, characteristics) VALUES ($1, $2, $3, $4) RETURNING *',
+      [name, description, price, characteristics]
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ error: 'DB error' });
+    res.status(500).json({ error: err });
   }
 };
 
 exports.updateProduct = async (req, res) => {
-  const { title, description, price, characteristics } = req.body;
+  const { name, description, price, characteristics } = req.body;
   try {
     const result = await pool.query(
-      'UPDATE products SET title = $1, description = $2, price = $3, characteristics = $4 WHERE id = $5 RETURNING *',
-      [title, description, price, characteristics, req.params.id]
+      'UPDATE products SET name = $1, description = $2, price = $3, characteristics = $4 WHERE id = $5 RETURNING *',
+      [name, description, price, characteristics, req.params.id]
     );
     res.json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ error: 'DB error' });
+    res.status(500).json({ error: err });
   }
 };
 

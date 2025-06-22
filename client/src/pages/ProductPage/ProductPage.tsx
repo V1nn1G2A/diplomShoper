@@ -1,20 +1,23 @@
-import { Box, Heading, Text, Button, Flex, Spinner } from "@chakra-ui/react";
+import { Box, Heading, Text, Button, Flex, Spinner, useToast } from "@chakra-ui/react";
 import { Link, useParams, type LinkProps } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { IProduct } from "../../models/IProduct";
+import { productApi } from "../../api/productsApi";
+import { cartApi } from "../../api/cartApi";
 
 export default function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState<IProduct | null>(null);
   const [loading, setLoading] = useState(true);
+  const toast = useToast();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/products/${id}`);
-        const data = await res.json();
-        setProduct(data);
+        const response = await productApi.getById(Number(id));
+        setProduct(response.data);
       } catch (error) {
+        console.error("Ошибка при загрузке товара:", error);
         setProduct(null);
       } finally {
         setLoading(false);
@@ -23,6 +26,41 @@ export default function ProductPage() {
 
     fetchProduct();
   }, [id]);
+
+  const handleAddToCart = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      if (!user.id) {
+        toast({
+          title: "Ошибка",
+          description: "Необходимо войти в аккаунт",
+          status: "error",
+          duration: 3000,
+        });
+        return;
+      }
+
+      await cartApi.addToCart(user.id, {
+        productId: Number(id),
+        quantity: 1,
+      });
+
+      toast({
+        title: "Успех",
+        description: "Товар добавлен в корзину",
+        status: "success",
+        duration: 3000,
+      });
+    } catch (error) {
+      console.error("Ошибка при добавлении в корзину:", error);
+      toast({
+        title: "Ошибка",
+        description: "Не удалось добавить товар в корзину",
+        status: "error",
+        duration: 3000,
+      });
+    }
+  };
 
   if (loading) {
     return (
@@ -74,7 +112,9 @@ export default function ProductPage() {
           </Box>
         </Box>
 
-        <Button colorScheme="teal">Добавить в корзину</Button>
+        <Button colorScheme="teal" onClick={handleAddToCart}>
+          Добавить в корзину
+        </Button>
       </Box>
     </Box>
   );

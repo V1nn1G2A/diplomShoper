@@ -9,24 +9,62 @@ import {
   ModalFooter,
   Input,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { login } from "../../api/auth";
 
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (email: string, password: string) => void;
+  onLoginSuccess: () => void;
 }
 
-const LoginModal = ({ isOpen, onClose, onSubmit }: LoginModalProps) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const LoginModal = ({ isOpen, onClose, onLoginSuccess }: LoginModalProps) => {
+  const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState(false);
+  const toast = useToast();
 
-  const handleLogin = () => {
-    onSubmit(email, password);
-    setEmail("");
-    setPassword("");
-    onClose();
+  const handleLogin = async () => {
+    if (!phone.trim()) {
+      toast({
+        title: "Ошибка",
+        description: "Введите номер телефона",
+        status: "error",
+        duration: 3000,
+      });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await login(phone);
+      
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("user", JSON.stringify(response.user));
+      
+      toast({
+        title: "Успех",
+        description: "Вы успешно вошли в аккаунт",
+        status: "success",
+        duration: 3000,
+      });
+      
+      onLoginSuccess();
+      onClose();
+      setPhone("");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.error("Ошибка входа:", error);
+      toast({
+        title: "Ошибка",
+        description: error.response?.data?.error || "Пользователь не найден",
+        status: "error",
+        duration: 3000,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -38,21 +76,21 @@ const LoginModal = ({ isOpen, onClose, onSubmit }: LoginModalProps) => {
         <ModalBody>
           <Box display="flex" flexDirection="column" gap={4}>
             <Input
-              placeholder="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              placeholder="Пароль"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Номер телефона (например: 89001234567)"
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
             />
           </Box>
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={handleLogin}>
+          <Button 
+            colorScheme="blue" 
+            mr={3} 
+            onClick={handleLogin}
+            isLoading={loading}
+            loadingText="Вход..."
+          >
             Войти
           </Button>
           <Button variant="ghost" onClick={onClose}>

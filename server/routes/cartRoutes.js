@@ -1,6 +1,6 @@
 // server/routes/cartRoutes.js
 const express = require('express');
-const { getCartByUserId, addToCart, updateCartItem, deleteFromCart } = require('../controllers/cartControllers');
+const { getCartByUserId, addToCart, updateCartItem, deleteFromCart } = require('../controllers/cartContollers');
 
 const router = express.Router();
 

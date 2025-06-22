@@ -1,12 +1,13 @@
 import { Button } from "@chakra-ui/react";
 import type { FC } from "react";
-import { useLocation } from "react-router-dom"; // или 'next/navigation' в Next.js
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface ControlBarProps {
   isLoggedIn: boolean;
   onLogin: () => void;
   onSignUp: () => void;
   onLogout: () => void;
+  onAccount?: () => void;
 }
 
 export const ControlBar: FC<ControlBarProps> = ({
@@ -15,7 +16,8 @@ export const ControlBar: FC<ControlBarProps> = ({
   onSignUp,
   onLogout,
 }) => {
-  const location = useLocation(); // или const pathname = usePathname() в Next.js
+  const location = useLocation();
+  const navigate = useNavigate();
 
   if (!isLoggedIn)
     return (
@@ -26,7 +28,7 @@ export const ControlBar: FC<ControlBarProps> = ({
           colorScheme="brand"
           mr={2}
         >
-          Log In
+          Войти
         </Button>
         <Button
           variant={location.pathname === "/registration" ? "solid" : "ghost"}
@@ -34,14 +36,24 @@ export const ControlBar: FC<ControlBarProps> = ({
           colorScheme="brand"
           mr={2}
         >
-          Sign Up
+          Регистрация
         </Button>
       </>
     );
 
   return (
-    <Button onClick={onLogout} colorScheme="brand" mr={2}>
-      Log Out
-    </Button>
+    <>
+      <Button 
+        variant={location.pathname === "/account" ? "solid" : "ghost"}
+        onClick={() => navigate("/account")} 
+        colorScheme="brand" 
+        mr={2}
+      >
+        Аккаунт
+      </Button>
+      <Button onClick={onLogout} colorScheme="brand" mr={2}>
+        Выйти
+      </Button>
+    </>
   );
 };
