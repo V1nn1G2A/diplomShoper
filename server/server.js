@@ -29,4 +29,4 @@ app.listen(PORT, () => {
 });
 
 // // Раскомментировать для заполнения БД
-seedDatabase();
+//seedDatabase();
