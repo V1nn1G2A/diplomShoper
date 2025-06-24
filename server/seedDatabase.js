@@ -14,7 +14,7 @@ const computerComponents = [
       'Техпроцесс': '7 нм',
       'TDP': '105 Вт'
     },
-    image_url: 'https://images.unsplash.com/photo-1555617078-d3dea82e7a37?w=400&h=300&fit=crop',
+    image_url: 'https://static.onlinetrade.ru/img/items/m/protsessor_amd_ryzen_7_5800x_am4_box_1532801_1.jpg',
     category: 'Процессоры'
   },
   {
@@ -28,7 +28,7 @@ const computerComponents = [
       'Техпроцесс': '10 нм',
       'TDP': '125 Вт'
     },
-    image_url: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-mpic/5313128/img_id5036027238664043908.jpeg/optimize',
     category: 'Процессоры'
   },
   {
@@ -42,7 +42,7 @@ const computerComponents = [
       'Техпроцесс': '5 нм',
       'TDP': '170 Вт'
     },
-    image_url: 'https://images.unsplash.com/photo-1555617078-d3dea82e7a37?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-mpic/12396668/2a00000194178f000fed463d4815b3725567/orig',
     category: 'Процессоры'
   },
 
@@ -58,7 +58,7 @@ const computerComponents = [
       'Длина': '267 мм',
       'Энергопотребление': '200 Вт'
     },
-    image_url: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&h=300&fit=crop',
+    image_url: 'https://cdn.citilink.ru/ngCUybTnfQSSJfdfK6iVEGSN-ztwjh5RhoZnuAa3EpM/resizing_type:fit/gravity:sm/width:1200/height:1200/plain/product-images/d34f0fe3-d36e-4154-bd5b-35094e912166.jpg',
     category: 'Видеокарты'
   },
   {
@@ -72,7 +72,7 @@ const computerComponents = [
       'Длина': '276 мм',
       'Энергопотребление': '263 Вт'
     },
-    image_url: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-goods_pic/11155300/hat48837426465f9c0a4563dfdae26b91c1/600x600',
     category: 'Видеокарты'
   },
   {
@@ -86,7 +86,7 @@ const computerComponents = [
       'Длина': '304 мм',
       'Энергопотребление': '320 Вт'
     },
-    image_url: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-goods_pic/6399767/hat69055e984e95d4d63d7d9aa9dd10e1a7/600x600',
     category: 'Видеокарты'
   },
 
@@ -102,7 +102,7 @@ const computerComponents = [
       'Тайминги': 'CL16',
       'Напряжение': '1.35 В'
     },
-    image_url: 'https://images.unsplash.com/photo-1555617078-d3dea82e7a37?w=400&h=300&fit=crop',
+    image_url: 'hhttps://avatars.mds.yandex.net/get-goods_pic/11398717/hatf57e259412fe4ed262b12728f2493976/600x600',
     category: 'Оперативная память'
   },
   {
@@ -116,7 +116,7 @@ const computerComponents = [
       'Тайминги': 'CL16',
       'Напряжение': '1.35 В'
     },
-    image_url: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-goods_pic/10637177/hat30ab4be94a209f679064cfad4d9a713f/600x600',
     category: 'Оперативная память'
   },
   {
@@ -130,7 +130,7 @@ const computerComponents = [
       'Тайминги': 'CL36',
       'Напряжение': '1.25 В'
     },
-    image_url: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-mpic/4397502/2a0000018af863e4b20dcd240a84c703ee67/optimize',
     category: 'Оперативная память'
   },
 
@@ -146,7 +146,7 @@ const computerComponents = [
       'Скорость записи': '5000 МБ/с',
       'Форм-фактор': 'M.2 2280'
     },
-    image_url: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=300&fit=crop',
+    image_url: 'hhttps://avatars.mds.yandex.net/get-goods_pic/10452541/hat75d5d1af916c806301e3cb3f7256577d/600x600',
     category: 'Накопители'
   },
   {
@@ -160,7 +160,7 @@ const computerComponents = [
       'Скорость записи': '6600 МБ/с',
       'Форм-фактор': 'M.2 2280'
     },
-    image_url: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-goods_pic/11394089/hat31891b7c1e0b1f5d8ffc440219251c79/600x600',
     category: 'Накопители'
   },
   {
@@ -174,7 +174,7 @@ const computerComponents = [
       'Кэш': '256 МБ',
       'Форм-фактор': '3.5 дюйма'
     },
-    image_url: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-mpic/6597196/2a000001921ef8b7bc29bd831a0cd5303852/600x800_multiply',
     category: 'Накопители'
   },
 
@@ -190,7 +190,7 @@ const computerComponents = [
       'Слоты PCIe': '2x PCIe 4.0 x16',
       'Форм-фактор': 'ATX'
     },
-    image_url: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-goods_pic/15385022/hat9171feb6fb165746ab263f74152792fb/600x600',
     category: 'Материнские платы'
   },
   {
@@ -204,7 +204,7 @@ const computerComponents = [
       'Слоты PCIe': '2x PCIe 5.0 x16',
       'Форм-фактор': 'ATX'
     },
-    image_url: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&h=300&fit=crop',
+    image_url: 'hhttps://avatars.mds.yandex.net/get-goods_pic/8173806/hataae03165d13a723fb1b1d04ac2f7ad68/600x600',
     category: 'Материнские платы'
   },
   {
@@ -218,7 +218,7 @@ const computerComponents = [
       'Слоты PCIe': '1x PCIe 5.0 x16, 2x PCIe 4.0 x16',
       'Форм-фактор': 'ATX'
     },
-    image_url: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-goods_pic/6245174/hat286be63c7915783ac0fd0942e78cb920/600x600',
     category: 'Материнские платы'
   },
 
@@ -234,7 +234,7 @@ const computerComponents = [
       'Скорость вентилятора': '1500 об/мин',
       'Уровень шума': '24.3 дБ'
     },
-    image_url: 'https://images.unsplash.com/photo-1555617078-d3dea82e7a37?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-goods_pic/14570715/hatbea5f0ad8a8e115908887e85db815059/600x600',
     category: 'Охлаждение'
   },
   {
@@ -248,7 +248,7 @@ const computerComponents = [
       'TDP': '250 Вт',
       'RGB подсветка': 'Да'
     },
-    image_url: 'https://images.unsplash.com/photo-1555617078-d3dea82e7a37?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-goods_pic/13809188/hat1f9661191648cd547117c30a5e20d9eb/600x600',
     category: 'Охлаждение'
   },
   {
@@ -262,7 +262,7 @@ const computerComponents = [
       'Вентиляторы': '2x 140мм',
       'Уровень шума': '24.6 дБ'
     },
-    image_url: 'https://images.unsplash.com/photo-1555617078-d3dea82e7a37?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-goods_pic/10816718/hataeaa18e31c29d1f6356597fa5769ce24/600x600',
     category: 'Охлаждение'
   },
 
@@ -278,7 +278,7 @@ const computerComponents = [
       'Вентилятор': '135 мм',
       'Гарантия': '10 лет'
     },
-    image_url: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&h=300&fit=crop',
+    image_url: 'https://n.cdn.cdek.shopping/images/shopping/60df0f6d1caf4969ba09b4d2ff34c454.jpg?v=1',
     category: 'Блоки питания'
   },
   {
@@ -292,7 +292,7 @@ const computerComponents = [
       'Вентилятор': '135 мм',
       'Гарантия': '10 лет'
     },
-    image_url: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&h=300&fit=crop',
+    image_url: 'https://n.cdn.cdek.shopping/images/shopping/b770af61d43242209719a69f48f0a701.jpg?v=1',
     category: 'Блоки питания'
   },
   {
@@ -306,7 +306,7 @@ const computerComponents = [
       'Вентилятор': '120 мм',
       'Гарантия': '10 лет'
     },
-    image_url: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&h=300&fit=crop',
+    image_url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/4fe122de1baccd6e7b0fee1bcc6bf153/556f85e73ee0554ec3c419a3ac856dda4ce8629a30ad83633e5a79f5ce78c774.jpg.webp',
     category: 'Блоки питания'
   },
 
@@ -322,7 +322,7 @@ const computerComponents = [
       'Поддержка GPU': 'до 440 мм',
       'Шумоизоляция': 'Да'
     },
-    image_url: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-goods_pic/11304284/hat8a6bcaca3a5710020559c28f7027634a/600x600',
     category: 'Корпуса'
   },
   {
@@ -336,7 +336,7 @@ const computerComponents = [
       'Поддержка GPU': 'до 413 мм',
       'RGB подсветка': 'Да'
     },
-    image_url: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-goods_pic/11138898/hat207aac7925b89eff1a9e8ef763e6fcdf/600x600',
     category: 'Корпуса'
   },
   {
@@ -350,7 +350,7 @@ const computerComponents = [
       'Поддержка GPU': 'до 420 мм',
       'Особенности': 'Двойное стекло'
     },
-    image_url: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/get-goods_pic/14320188/hat862a765a3f7af74cfb41aeba37fee7aa/600x600',
     category: 'Корпуса'
   },
   {
@@ -367,7 +367,7 @@ const computerComponents = [
       'Корпус': 'Lian Li PC-O11 Dynamic',
       'Охлаждение': 'Кастомная СВО'
     },
-    image_url: 'https://images.unsplash.com/photo-1619531210520-b802c8fe46c4?w=400&h=300&fit=crop',
+    image_url: 'https://uae.microless.com/cdn/category_files/946694c7561035e566d15353e7db38a3.jpg',
     category: 'Сборки'
   },
   {
@@ -384,7 +384,7 @@ const computerComponents = [
       'Корпус': 'Fractal Design Define 7',
       'Охлаждение': 'Noctua NH-D15'
     },
-    image_url: 'https://images.unsplash.com/photo-1626908013355-26536f110b8c?w=400&h=300&fit=crop',
+    image_url: 'https://yandex-images.clstorage.net/9q8jYr349/d54121GTG/pLKdExOc-BK0KCUtlhpB2RH9BVyVJttiGG6JVLUV4O_jTcN2PxzuOXTpWxN1OHf1HqLotlJjhGYoVo8ghrkAnv2rjG9z7OUb7Gg1YIsmcdgVmCQ5kQqHJzyqYYENgQgCH-1vgoMd10Q1oHdqaCXuNVbvTbM7HhWzhd7CecuY-KLE0pzSurxkxuTMOXnDFrH9RB2hBKGm3wuAzk0pOTHcYkvdvwaHIZPIndCCNhwxVnhal3XnB3bpu11CrlXHKPiqYFL8RqrglHb8fDmFY25t1eTZ-bDJPmu3KDZd0R1Z_DJTUTsqE-1X2BH0tmY01Q5gQrOdJ0MO1YNZCq7R05RcXnDiwP72qHDiuJj57ZcKuWFoAUXofYKfV4BC2bWtKbz2B0UjrqPlR6RtLELy4KGqUG4_cZ9fQuUPwT6KfbcgVJrkblQuZpxYgogchWnDSiVRAJ1dTHlmQ4tAYsk5Bbm42n-Z7_YDnTfA5WyGSgCp0mhq8wGri4Jxfw3aMgU7YHDOEBqIwgLApN5QuIX5g_I1obR5QRB9Zu-riG55PcVB0J5T7U_2ryl7bOWEUhoctT6M3peZo5_m_fPpcqIhj8wgzlTqAOayyGzS1Mh1bed6YQlYAclAfTIDP3BCvY25oSzqP-XLEmd9z2iZONZGiFFyxFoPIXMbmnkPxUIW0dNApFrcWmQyJgwwdgA44bUXHs3B5P1V4H1mV7_A6sWtSdnM5vPFJ4YL7cOokeBKWkARXny2MzUv9wZpY2GqLs0TaCz-ID54zoKcnH6Y_Il1Q5IV6XytKZzFeusvEJI5MR3JHBLz4Xeqq6GfVO0UMl44lSZwRmv5ywN-4a8p_soZlxQkmigyMMaqqLCC6MBh-Tsa7QXQQW3kSe7L1xxypaUNmTQWk0HXGhf183C5iMLKOM0-qJJjkWO3kp2LmcLeSfe4HALQNnR-GmDs2vTY5anjannZVI1p5PUSG0_g0imdkb00',
     category: 'Сборки'
   },
   {
@@ -401,7 +401,7 @@ const computerComponents = [
       'Корпус': 'DEEPCOOL MATREXX 55',
       'Охлаждение': 'Стоковое'
     },
-    image_url: 'https://images.unsplash.com/photo-1610484827261-f64d6ee6bdc3?w=400&h=300&fit=crop',
+    image_url: 'https://cdn0.youla.io/files/images/720_720_out/63/e1/63e150489e12561f0b7bfad6-1.jpg',
     category: 'Сборки'
   },
   {
@@ -418,7 +418,7 @@ const computerComponents = [
       'Корпус': 'Cooler Master NR200',
       'Охлаждение': 'Низкопрофильное'
     },
-    image_url: 'https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?w=400&h=300&fit=crop',
+    image_url: 'https://avatars.mds.yandex.net/i?id=36af77d98ce1981f95a965855bee1c30_l-5274026-images-thumbs&n=13',
     category: 'Сборки'
   },
   {
@@ -435,7 +435,7 @@ const computerComponents = [
       'Корпус': 'Phanteks Eclipse G360A',
       'Охлаждение': '240мм СЖО'
     },
-    image_url: 'https://images.unsplash.com/photo-1587202372775-9897f90d7a5e?w=400&h=300&fit=crop',
+    image_url: 'https://files.pccasegear.com/UserFiles/PH-EC360ATG-DBK02-phanteks-eclipse-g360a-airflow-d-rgb-tempered-glass-black-ftr8.jpg',
     category: 'Сборки'
   }
 ]
@@ -477,8 +477,8 @@ const seedDatabase = async () => {
     // Заполнение таблицы products
     for (const component of computerComponents) {
       await pool.query(
-        'INSERT INTO products (name, description, price, characteristics, category) VALUES ($1, $2, $3, $4, $5)',
-        [component.name, component.description, component.price, JSON.stringify(component.characteristics), component.category]
+        'INSERT INTO products (name, description, price,  characteristics, image_url, category) VALUES ($1, $2, $3, $4, $5, $6)',
+        [component.name, component.description, component.price, JSON.stringify(component.characteristics), component.image_url, component.category]
       );
       console.log(`Добавлен товар: ${component.name}`);
     }
