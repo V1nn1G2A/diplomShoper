@@ -22,6 +22,7 @@ import { useState, useEffect } from "react";
 import { getUserByPhone } from "../../api/auth";
 import { userApi } from "../../api/userApi";
 import type { IUser } from "../../models/IUser";
+import { useUser } from "../../context/UserContext";
 
 export default function AccountPage() {
   const navigate = useNavigate();
@@ -39,17 +40,19 @@ export default function AccountPage() {
     city: "",
   });
 
+  const { user: userData } = useUser()
+
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const userData = localStorage.getItem("user");
+
         if (!userData) {
           navigate("/");
           return;
         }
 
-        const parsedUser = JSON.parse(userData);
-        const response = await getUserByPhone(parsedUser.phone);
+        const response = (await userApi.getById(userData.id)).data;
+
         setUser(response);
         setEditForm({
           first_name: response.first_name || "",

@@ -24,6 +24,12 @@ export const getUserByPhone = async (phone: string) => {
 };
 
 export const logout = () => {
+  // Очищаем все данные пользователя из localStorage
   localStorage.removeItem("token");
   localStorage.removeItem("user");
+  
+  // Можно добавить дополнительную логику, например:
+  // - Уведомление сервера о выходе
+  // - Очистка других данных сессии
+  console.log("Пользователь вышел из системы");
 };

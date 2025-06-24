@@ -196,10 +196,41 @@ const computerComponents = [
   }
 ];
 
+const users = [
+  {
+    first_name: 'Иван',
+    last_name: 'Иванов',
+    middle_name: 'Иванович',
+    email: 'ivanov@example.com',
+    phone: '+79001234567',
+    city: 'Москва',
+    role: 'user'
+  },
+  {
+    first_name: 'Кирилл',
+    last_name: 'Шагаев',
+    middle_name: 'Алексеевич',
+    email: 'avcc@example.com',
+    phone: '+79176313087',
+    city: 'Ульяновск',
+    role: 'admin'
+  },
+  {
+    first_name: 'Мария',
+    last_name: 'Сидорова',
+    middle_name: null,
+    email: 'sidorova@example.com',
+    phone: null,
+    city: 'Казань',
+    role: 'user'
+  }
+];
+
 const seedDatabase = async () => {
   try {
     console.log('Начинаем заполнение базы данных...');
-    
+
+    // Заполнение таблицы products
     for (const component of computerComponents) {
       await pool.query(
         'INSERT INTO products (name, description, price, characteristics) VALUES ($1, $2, $3, $4)',
@@ -207,14 +238,21 @@ const seedDatabase = async () => {
       );
       console.log(`Добавлен товар: ${component.name}`);
     }
-    
+
+    // Заполнение таблицы users
+    for (const user of users) {
+      await pool.query(
+        `INSERT INTO users (first_name, last_name, middle_name, email, phone, city, role) 
+         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+        [user.first_name, user.last_name, user.middle_name, user.email, user.phone, user.city, user.role]
+      );
+      console.log(`Добавлен пользователь: ${user.first_name} ${user.last_name}`);
+    }
+
     console.log('База данных успешно заполнена!');
   } catch (error) {
     console.error('Ошибка при заполнении базы данных:', error);
   }
 };
-
-// Раскомментируйте строку ниже для запуска заполнения БД
-// seedDatabase();
 
 module.exports = seedDatabase;

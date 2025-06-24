@@ -1,27 +1,25 @@
 // client/src/components/Header/Header.tsx
-import React, { useContext } from "react";
+import React from "react";
 import { Box, Button, Flex, Spacer } from "@chakra-ui/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ControlBar } from "../ControlBar/ControlBar";
 import LoginModal from "../LoginModal/LoginModal";
-import { logout as logoutRequest } from "../../api/auth";
 import { useUser } from "../../context/UserContext";
 
 export const Header: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, isLoggedIn, logout: userLogout } = useUser();
+  const { user, isLoggedIn } = useUser();
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const handleLoginSuccess = () => {
-    // Логика успешного входа теперь обрабатывается в UserContext
+    // Логика успешного входа теперь обрабатывается в UserContext через LoginModal
   };
 
+  // Функция handleLogout больше не нужна, так как LogoutButton сам управляет выходом
   const handleLogout = () => {
-    logoutRequest();
-    userLogout();
-    navigate("/");
+    // Эта функция оставлена для совместимости, но не используется
   };
 
   return (

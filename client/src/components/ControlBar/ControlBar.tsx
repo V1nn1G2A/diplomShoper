@@ -1,6 +1,8 @@
+// client/src/components/ControlBar/ControlBar.tsx
 import { Button } from "@chakra-ui/react";
 import type { FC } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { LogoutButton } from "../LogoutButton/LogoutButton";
 
 interface ControlBarProps {
   isLoggedIn: boolean;
@@ -14,7 +16,7 @@ export const ControlBar: FC<ControlBarProps> = ({
   isLoggedIn,
   onLogin,
   onSignUp,
-  onLogout,
+  // onLogout теперь не используется, так как LogoutButton сам управляет выходом
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -51,9 +53,11 @@ export const ControlBar: FC<ControlBarProps> = ({
       >
         Аккаунт
       </Button>
-      <Button onClick={onLogout} colorScheme="brand" mr={2}>
-        Выйти
-      </Button>
+      <LogoutButton 
+        variant="ghost"
+        colorScheme="brand"
+        showConfirmation={true}
+      />
     </>
   );
 };

@@ -11,6 +11,7 @@ import ProductPage from './pages/ProductPage/ProductPage';
 import { CartPage } from './pages/CartPage/CartPage';
 import { AdminPanel } from './pages/AdminPanel/AdminPanel';
 import AccountPage from './pages/AccountPage/AccountPage';
+import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path="/cart" element={<CartPage />} />
               <Route path="/admin" element={<AdminPanel />} />
               <Route path="/account" element={<AccountPage />} />
+              <Route path="/registration" element={<RegistrationPage />} />
             </Routes>
           </Router>
         </UserProvider>
