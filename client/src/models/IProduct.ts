@@ -1,12 +1,13 @@
 export interface IProduct {
   id: number;
-  title: string;
+  name: string;
   description: string;
   price: number;
   characteristics: {
     [key: string]: string | undefined;
   };
-  image: string;
+  image_url: string;
+  category: string;
 }
 
 export interface IProductWithQuantity extends IProduct {

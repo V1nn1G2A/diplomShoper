@@ -2,7 +2,7 @@ const pool = require('../db/db');
 
 exports.getAllProducts = async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM products');
+    const result = await pool.query('SELECT * FROM products ORDER BY category, name');
     res.json(result.rows);
   } catch (err) {
     res.status(500).json({ error: 'DB error' });
@@ -20,11 +20,11 @@ exports.getProductById = async (req, res) => {
 };
 
 exports.createProduct = async (req, res) => {
-  const { name, description, price, characteristics } = req.body;
+  const { name, description, price, characteristics, image_url, category } = req.body;
   try {
     const result = await pool.query(
-      'INSERT INTO products (name, description, price, characteristics) VALUES ($1, $2, $3, $4) RETURNING *',
-      [name, description, price, characteristics]
+      'INSERT INTO products (name, description, price, characteristics, image_url, category) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+      [name, description, price, characteristics, image_url, category]
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
@@ -33,11 +33,11 @@ exports.createProduct = async (req, res) => {
 };
 
 exports.updateProduct = async (req, res) => {
-  const { name, description, price, characteristics } = req.body;
+  const { name, description, price, characteristics, image_url, category } = req.body;
   try {
     const result = await pool.query(
-      'UPDATE products SET name = $1, description = $2, price = $3, characteristics = $4 WHERE id = $5 RETURNING *',
-      [name, description, price, characteristics, req.params.id]
+      'UPDATE products SET name = $1, description = $2, price = $3, characteristics = $4, image_url = $5, category = $6 WHERE id = $7 RETURNING *',
+      [name, description, price, characteristics, image_url, category, req.params.id]
     );
     res.json(result.rows[0]);
   } catch (err) {

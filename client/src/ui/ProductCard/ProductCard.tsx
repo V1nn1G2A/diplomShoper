@@ -9,9 +9,11 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
-  card: { id, name, description, price, characteristics, quantity },
+  card: { id, name, description, price, characteristics, quantity, image_url },
   handleClick,
 }) => {
+  const defaultImage = "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&h=300&fit=crop";
+  
   return (
     <Box
       p={5}
@@ -34,14 +36,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         <Box mb={3}>
           <Image
-            src={
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDItVRptC5139xw0LhV44p-bIkn5OCW9VEpg&s"
-            }
+            src={image_url || defaultImage}
             alt={name}
             width="100%"
             height="120px"
             objectFit="cover"
             borderRadius="md"
+            fallbackSrc={defaultImage}
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = defaultImage;
+            }}
           />
         </Box>
 

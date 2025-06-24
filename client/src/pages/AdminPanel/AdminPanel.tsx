@@ -155,7 +155,7 @@ export const AdminPanel: React.FC = () => {
                 onChange={e => setFormState({ ...formState, price: e.target.value })} />
               <Input placeholder="Описание" value={formState.description}
                 onChange={e => setFormState({ ...formState, description: e.target.value })} />
-              <Input placeholder="Характеристики (JSON)" value={formState.characteristics}
+              <Input placeholder='{"ОЗУ": "16Гб", "Процессор": "Intel Core i7"}' value={formState.characteristics}
                 onChange={e => setFormState({ ...formState, characteristics: e.target.value })} />
             </VStack>
           </ModalBody>
