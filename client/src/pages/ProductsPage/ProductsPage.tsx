@@ -20,7 +20,7 @@ export default function ProductsPage() {
   // Загрузка продуктов с сервера
   useEffect(() => {
     axios
-      .get<IProduct[]>(`http://${import.meta.env.VITE_API_URL}/api/products`)
+      .get<IProduct[]>(`${import.meta.env.VITE_API_URL}/api/products`)
       .then((res) => {
         const enriched = res.data.map((p) => ({ ...p, quantity: 0 }));
         setProducts(enriched);
