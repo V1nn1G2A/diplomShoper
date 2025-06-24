@@ -14,7 +14,7 @@ export const register = async (userData: {
   phone: string;
   city: string;
 }) => {
-  const response = await api.post('/auth/register', userData);
+  const response = await api.post('/auth/registration', userData);
   return response.data;
 };
 

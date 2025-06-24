@@ -5,7 +5,7 @@ const { login, register, getUserByPhone } = require('../controllers/authControll
 const router = express.Router();
 
 router.post('/login', login);
-router.post('/register', register);
+router.post('/registration', register);
 router.get('/user/:phone', getUserByPhone);
 
 module.exports = router;
