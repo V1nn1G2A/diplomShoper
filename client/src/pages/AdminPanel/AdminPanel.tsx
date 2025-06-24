@@ -9,7 +9,7 @@ import {
 import type { IUser } from "../../models/IUser";
 import type { IProduct } from "../../models/IProduct";
 import users from "../../data/userData.json";
-import { productApi } from "../../api/productsApi"; // <-- используем централизованный API
+import { productApi } from "../../api/productsApi";
 
 export const AdminPanel: React.FC = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -24,10 +24,19 @@ export const AdminPanel: React.FC = () => {
     price: "",
     description: "",
     characteristics: "",
+    image_url: "",
+    category: "",
   });
 
   const resetForm = () => {
-    setFormState({ name: "", price: "", description: "", characteristics: "" });
+    setFormState({
+      name: "",
+      price: "",
+      description: "",
+      characteristics: "",
+      image_url: "",
+      category: "",
+    });
     setEditingProduct(null);
   };
 
@@ -50,6 +59,8 @@ export const AdminPanel: React.FC = () => {
         price: String(product.price),
         description: product.description,
         characteristics: JSON.stringify(product.characteristics || {}, null, 2),
+        image_url: product.image_url || "",
+        category: product.category || "",
       });
     } else resetForm();
     onOpen();
@@ -57,12 +68,14 @@ export const AdminPanel: React.FC = () => {
 
   const handleSaveProduct = async () => {
     setIsSaving(true);
-    const payload: IProduct = {
+    const payload = {
       id: editingProduct ? editingProduct.id : Date.now(),
       name: formState.name,
       price: parseFloat(formState.price),
       description: formState.description,
       characteristics: JSON.parse(formState.characteristics || "{}"),
+      image_url: formState.image_url,
+      category: formState.category,
     };
 
     try {
@@ -157,6 +170,10 @@ export const AdminPanel: React.FC = () => {
                 onChange={e => setFormState({ ...formState, description: e.target.value })} />
               <Input placeholder='{"ОЗУ": "16Гб", "Процессор": "Intel Core i7"}' value={formState.characteristics}
                 onChange={e => setFormState({ ...formState, characteristics: e.target.value })} />
+              <Input placeholder="Ссылка на изображение" value={formState.image_url}
+                onChange={e => setFormState({ ...formState, image_url: e.target.value })} />
+              <Input placeholder="Категория" value={formState.category}
+                onChange={e => setFormState({ ...formState, category: e.target.value })} />
             </VStack>
           </ModalBody>
           <ModalFooter>

@@ -7,7 +7,12 @@ import {
   InputGroup, 
   InputLeftElement,
   Text,
-  VStack
+  VStack,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { ProductCard } from "../../ui/ProductCard/ProductCard";
@@ -29,6 +34,7 @@ export default function ProductsPage() {
 
   const [products, setProducts] = useState<IProductWithQuantity[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeTab, setActiveTab] = useState(0);
 
   // Загрузка продуктов с сервера
   useEffect(() => {
@@ -56,21 +62,38 @@ export default function ProductsPage() {
     );
   }, [cartItems]);
 
-  // Фильтрация продуктов по поисковому запросу
+  products.map(p => console.log(p))
+
+  // Получение уникальных категорий
+  const categories = useMemo(() => {
+    const uniqueCategories = [...new Set(products.map(p => p.category))];
+    return ["Все товары", ...uniqueCategories.sort()];
+  }, [products]);
+
+  // Фильтрация продуктов по категории и поисковому запросу
   const filteredProducts = useMemo(() => {
-    if (!searchQuery.trim()) {
-      return products;
+    let filtered = products;
+
+    // Фильтр по категории
+    if (activeTab > 0) {
+      const selectedCategory = categories[activeTab];
+      filtered = filtered.filter(product => product.category === selectedCategory);
     }
 
-    const query = searchQuery.toLowerCase().trim();
-    return products.filter((product) => {
-      return (
-        product.name.toLowerCase().includes(query) ||
-        product.description?.toLowerCase().includes(query) ||
-        product.category?.toLowerCase().includes(query)
-      );
-    });
-  }, [products, searchQuery]);
+    // Фильтр по поисковому запросу
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      filtered = filtered.filter((product) => {
+        return (
+          product.name.toLowerCase().includes(query) ||
+          product.description?.toLowerCase().includes(query) ||
+          product.category?.toLowerCase().includes(query)
+        );
+      });
+    }
+
+    return filtered;
+  }, [products, searchQuery, activeTab, categories]);
 
   const handleAddToCart = async (id: number, direction: "up" | "down" = "up") => {
     if (!userId) {
@@ -125,7 +148,7 @@ export default function ProductsPage() {
       <Box maxW="1200px" mx="auto">
         <VStack spacing={6} align="stretch">
           <Heading color="brand.primary">
-            Все товары
+            Каталог товаров
           </Heading>
 
           {/* Поисковая строка */}
@@ -144,43 +167,71 @@ export default function ProductsPage() {
             />
           </InputGroup>
 
-          {/* Результаты поиска */}
-          {searchQuery.trim() && (
-            <Text color="gray.600" fontSize="sm">
-              {filteredProducts.length > 0 
-                ? `Найдено товаров: ${filteredProducts.length}`
-                : "По вашему запросу ничего не найдено"
-              }
-            </Text>
-          )}
-
-          {/* Сетка товаров */}
-          {filteredProducts.length > 0 ? (
-            <Grid templateColumns="repeat(auto-fill, minmax(260px, 1fr))" gap={6}>
-              {filteredProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  card={product}
-                  handleClick={handleAddToCart}
-                />
+          {/* Вкладки по категориям */}
+          <Tabs 
+            index={activeTab} 
+            onChange={setActiveTab}
+            variant="enclosed"
+            colorScheme="teal"
+          >
+            <TabList flexWrap="wrap" gap={2}>
+              {categories.map((category, index) => (
+                <Tab key={index} minW="fit-content">
+                  {category}
+                </Tab>
               ))}
-            </Grid>
-          ) : searchQuery.trim() ? (
-            <Box textAlign="center" py={10}>
-              <Text fontSize="lg" color="gray.500">
-                По запросу "{searchQuery}" товары не найдены
-              </Text>
-              <Text fontSize="sm" color="gray.400" mt={2}>
-                Попробуйте изменить поисковый запрос
-              </Text>
-            </Box>
-          ) : (
-            <Box textAlign="center" py={10}>
-              <Text fontSize="lg" color="gray.500">
-                Товары загружаются...
-              </Text>
-            </Box>
-          )}
+            </TabList>
+
+            <TabPanels>
+              {categories.map((category, index) => (
+                <TabPanel key={index} px={0}>
+                  {/* Результаты поиска */}
+                  {searchQuery.trim() && (
+                    <Text color="gray.600" fontSize="sm" mb={4}>
+                      {filteredProducts.length > 0 
+                        ? `Найдено товаров: ${filteredProducts.length}`
+                        : "По вашему запросу ничего не найдено"
+                      }
+                    </Text>
+                  )}
+
+                  {/* Сетка товаров */}
+                  {filteredProducts.length > 0 ? (
+                    <Grid templateColumns="repeat(auto-fill, minmax(260px, 1fr))" gap={6}>
+                      {filteredProducts.map((product) => (
+                        <ProductCard
+                          key={product.id}
+                          card={product}
+                          handleClick={handleAddToCart}
+                        />
+                      ))}
+                    </Grid>
+                  ) : searchQuery.trim() ? (
+                    <Box textAlign="center" py={10}>
+                      <Text fontSize="lg" color="gray.500">
+                        По запросу "{searchQuery}" товары не найдены
+                      </Text>
+                      <Text fontSize="sm" color="gray.400" mt={2}>
+                        Попробуйте изменить поисковый запрос
+                      </Text>
+                    </Box>
+                  ) : filteredProducts.length === 0 && products.length > 0 ? (
+                    <Box textAlign="center" py={10}>
+                      <Text fontSize="lg" color="gray.500">
+                        В категории "{category}" пока нет товаров
+                      </Text>
+                    </Box>
+                  ) : (
+                    <Box textAlign="center" py={10}>
+                      <Text fontSize="lg" color="gray.500">
+                        Товары загружаются...
+                      </Text>
+                    </Box>
+                  )}
+                </TabPanel>
+              ))}
+            </TabPanels>
+          </Tabs>
         </VStack>
       </Box>
     </Box>
