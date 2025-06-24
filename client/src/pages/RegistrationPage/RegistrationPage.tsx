@@ -122,7 +122,8 @@ const RegistrationPage = () => {
         city: formData.city.trim(),
       });
       
-      login(response.user, response.token);
+      const user = {...response};
+      login(user, `token${user.id}`);
       
       toast({
         title: "Успешная регистрация",
