@@ -2,12 +2,12 @@
 import { api } from "./axios";
 
 export const login = async (phone: string) => {
-  const response = await api.post('/api/auth/login', { phone });
+  const response = await api.post('/auth/login', { phone });
   return response.data;
 };
 
 export const getUserByPhone = async (phone: string) => {
-  const response = await api.get(`/api/user/${phone}`);
+  const response = await api.get(`/user/${phone}`);
   return response.data;
 };
 
