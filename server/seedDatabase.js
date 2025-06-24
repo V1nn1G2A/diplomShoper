@@ -102,7 +102,7 @@ const computerComponents = [
       'Тайминги': 'CL16',
       'Напряжение': '1.35 В'
     },
-    image_url: 'hhttps://avatars.mds.yandex.net/get-goods_pic/11398717/hatf57e259412fe4ed262b12728f2493976/600x600',
+    image_url: 'https://avatars.mds.yandex.net/get-goods_pic/11398717/hatf57e259412fe4ed262b12728f2493976/600x600',
     category: 'Оперативная память'
   },
   {
@@ -204,7 +204,7 @@ const computerComponents = [
       'Слоты PCIe': '2x PCIe 5.0 x16',
       'Форм-фактор': 'ATX'
     },
-    image_url: 'hhttps://avatars.mds.yandex.net/get-goods_pic/8173806/hataae03165d13a723fb1b1d04ac2f7ad68/600x600',
+    image_url: 'https://www.hardware-experts.nl/media/6481d934-6db1-41c3-b7d6-5627ff6ce0b8',
     category: 'Материнские платы'
   },
   {
