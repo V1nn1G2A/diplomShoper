@@ -1,21 +1,34 @@
-import { Box, Grid, Heading } from "@chakra-ui/react";
+// client/src/pages/ProductsPage/ProductsPage.tsx
+import { 
+  Box, 
+  Grid, 
+  Heading, 
+  Input, 
+  InputGroup, 
+  InputLeftElement,
+  Text,
+  VStack
+} from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
 import { ProductCard } from "../../ui/ProductCard/ProductCard";
 import { useAppDispatch, useAppSelector } from "../../redux";
 import { addToCart } from "../../store/slices/cartSlice";
-import { useLayoutEffect, useState, useEffect } from "react";
+import { useLayoutEffect, useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import type { IProduct, IProductWithQuantity } from "../../models/IProduct";
 import { cartApi } from "../../api/cartApi";
 import { useUser } from "../../context/UserContext";
 import { useToast } from "@chakra-ui/react";
+
 export default function ProductsPage() {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector((state) => state.cart.items);
   const toast = useToast();
-  const user = useUser()
-  const userId = user.user?.id
+  const user = useUser();
+  const userId = user.user?.id;
 
   const [products, setProducts] = useState<IProductWithQuantity[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Загрузка продуктов с сервера
   useEffect(() => {
@@ -42,6 +55,22 @@ export default function ProductsPage() {
       })
     );
   }, [cartItems]);
+
+  // Фильтрация продуктов по поисковому запросу
+  const filteredProducts = useMemo(() => {
+    if (!searchQuery.trim()) {
+      return products;
+    }
+
+    const query = searchQuery.toLowerCase().trim();
+    return products.filter((product) => {
+      return (
+        product.name.toLowerCase().includes(query) ||
+        product.description?.toLowerCase().includes(query) ||
+        product.category?.toLowerCase().includes(query)
+      );
+    });
+  }, [products, searchQuery]);
 
   const handleAddToCart = async (id: number, direction: "up" | "down" = "up") => {
     if (!userId) {
@@ -94,19 +123,65 @@ export default function ProductsPage() {
   return (
     <Box bg="brand.bg" minH="100vh" py="100px" px={{ base: 4, md: 10 }}>
       <Box maxW="1200px" mx="auto">
-        <Heading mb={8} color="brand.primary">
-          Все товары
-        </Heading>
+        <VStack spacing={6} align="stretch">
+          <Heading color="brand.primary">
+            Все товары
+          </Heading>
 
-        <Grid templateColumns="repeat(auto-fill, minmax(260px, 1fr))" gap={6}>
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              card={product}
-              handleClick={handleAddToCart}
+          {/* Поисковая строка */}
+          <InputGroup maxW="400px">
+            <InputLeftElement pointerEvents="none">
+              <SearchIcon color="gray.300" />
+            </InputLeftElement>
+            <Input
+              placeholder="Поиск товаров..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              bg="white"
+              borderColor="gray.300"
+              _hover={{ borderColor: "gray.400" }}
+              _focus={{ borderColor: "brand.primary", boxShadow: "0 0 0 1px brand.primary" }}
             />
-          ))}
-        </Grid>
+          </InputGroup>
+
+          {/* Результаты поиска */}
+          {searchQuery.trim() && (
+            <Text color="gray.600" fontSize="sm">
+              {filteredProducts.length > 0 
+                ? `Найдено товаров: ${filteredProducts.length}`
+                : "По вашему запросу ничего не найдено"
+              }
+            </Text>
+          )}
+
+          {/* Сетка товаров */}
+          {filteredProducts.length > 0 ? (
+            <Grid templateColumns="repeat(auto-fill, minmax(260px, 1fr))" gap={6}>
+              {filteredProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  card={product}
+                  handleClick={handleAddToCart}
+                />
+              ))}
+            </Grid>
+          ) : searchQuery.trim() ? (
+            <Box textAlign="center" py={10}>
+              <Text fontSize="lg" color="gray.500">
+                По запросу "{searchQuery}" товары не найдены
+              </Text>
+              <Text fontSize="sm" color="gray.400" mt={2}>
+                Попробуйте изменить поисковый запрос
+              </Text>
+            </Box>
+          ) : (
+            <Box textAlign="center" py={10}>
+              <Text fontSize="lg" color="gray.500">
+                Товары загружаются...
+              </Text>
+            </Box>
+          )}
+        </VStack>
       </Box>
     </Box>
   );

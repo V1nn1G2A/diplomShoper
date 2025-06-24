@@ -1,3 +1,4 @@
+// client/src/components/LoginModal/LoginModal.tsx
 import {
   Box,
   Modal,
@@ -13,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { login } from "../../api/auth";
+import { useUser } from "../../context/UserContext";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -24,6 +26,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }: LoginModalProps) => {
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const toast = useToast();
+  const { login: userLogin } = useUser();
 
   const handleLogin = async () => {
     if (!phone.trim()) {
@@ -40,8 +43,8 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }: LoginModalProps) => {
     try {
       const response = await login(phone);
       
-      localStorage.setItem("token", response.token);
-      localStorage.setItem("user", JSON.stringify(response.user));
+      // Используем метод login из UserContext
+      userLogin(response.user, response.token);
       
       toast({
         title: "Успех",

@@ -1,32 +1,26 @@
+// client/src/components/Header/Header.tsx
 import React, { useContext } from "react";
 import { Box, Button, Flex, Spacer } from "@chakra-ui/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ControlBar } from "../ControlBar/ControlBar";
 import LoginModal from "../LoginModal/LoginModal";
 import { logout as logoutRequest } from "../../api/auth";
+import { useUser } from "../../context/UserContext";
 
 export const Header: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, isLoggedIn, logout: userLogout } = useUser();
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-
-  
-
-  // Проверка токена при загрузке
-  React.useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) setIsLoggedIn(true);
-  }, []);
 
   const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
+    // Логика успешного входа теперь обрабатывается в UserContext
   };
 
   const handleLogout = () => {
     logoutRequest();
-    setIsLoggedIn(false);
+    userLogout();
     navigate("/");
   };
 
@@ -56,8 +50,6 @@ export const Header: React.FC = () => {
         Корзина
       </Button>
 
-  
-
       <ControlBar
         isLoggedIn={isLoggedIn}
         onLogin={() => setIsModalOpen(true)}
@@ -65,13 +57,16 @@ export const Header: React.FC = () => {
         onSignUp={() => navigate("/registration")}
       />
 
-      <Button
-        onClick={() => navigate("/admin")}
-        colorScheme="brand.accent"
-        variant="outline"
-      >
-        Admin
-      </Button>
+      {/* Показываем кнопку Admin только для администраторов */}
+      {isLoggedIn && user?.role === 'admin' && (
+        <Button
+          onClick={() => navigate("/admin")}
+          colorScheme="brand.accent"
+          variant="outline"
+        >
+          Admin
+        </Button>
+      )}
 
       <LoginModal
         isOpen={isModalOpen}
